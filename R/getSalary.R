@@ -41,11 +41,11 @@ getSalary=function(url, currency=c("USD","GBP","EUR")){
 
   kFlag <- FALSE
   type <- match.arg(currency)
-  output <- data.frame(status="unknown", period="unknown", currency= currency,
+  output <- data.frame(status="unknown", period="unknown", currency= type,
                        minSal=NA, maxSal=NA)
   page <- xml2::read_html(url)
   text <- rvest::html_nodes(page,"#job_header+ div") %>% rvest::html_text()
-  print(text)
+
   if(length(text)==0)
     return(output)
 
