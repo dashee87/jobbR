@@ -1,0 +1,21 @@
+Package: jobbR
+Title: R wrapper for the Indeed API
+Version: 0.0.1
+Authors@R: person("David", "Sheehan", email = "davidfsheehan87@gmail.com", role = c("aut", "cre"))
+Description: jobbR is an R package that allows you to search for jobs via the Indeed API.
+Depends: R (>= 3.1.1)
+License: MIT + file LICENSE
+URL: https://github.com/dashee87/jobbR
+BugReports: http://www.github.com/dashee87/jobbR/issues
+Maintainer: David Sheehan <davidfsheehan87@gmail.com>
+LazyData: true
+Imports:
+    httr,
+    rvest,
+    xml2,
+    jsonlite
+Suggests:
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
+RoxygenNote: 5.0.1
