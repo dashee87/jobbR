@@ -13,7 +13,8 @@ Imports:
     httr,
     rvest,
     xml2,
-    jsonlite
+    jsonlite,
+    magrittr
 Suggests:
     knitr,
     rmarkdown
