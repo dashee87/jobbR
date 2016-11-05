@@ -69,8 +69,8 @@ getSalary=function(url, currency=c("USD","GBP","EUR")){
   }else if(len==2){
     output$minSal <- output$maxSal <- gsub( " .*$", "", text[2] )
   }else{
-    output$minSal <- output$maxSal <- gsub( " .*$", "", text[len-1] )
-    output$maxSal <- output$maxSal <- gsub( " .*$", "", text[len] )
+    output$minSal <- gsub( " .*$", "", text[len-1] )
+    output$maxSal <- gsub( " .*$", "", text[len] )
   }
 
   if(grepl("year",text[len])){
