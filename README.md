@@ -56,7 +56,7 @@ For more information on any function, consult the accompanying documentation:
 
 ### Issues
 
-Please let me know if something's not working.
+Please let me know if something's not working or if you have some good wrestling puns.
 
 [Submit issues here](https://github.com/dashee87/jobbR/issues).
 
