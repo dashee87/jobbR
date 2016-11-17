@@ -57,7 +57,7 @@ getSalary=function(url, currency=c("USD","GBP","EUR")){
     output$status <- "Permanent"}
 
   text <- switch(type,
-                 USD=strsplit(text,"$"),
+                 USD=strsplit(text,"\\$"),
                  GBP=strsplit(text,"\uA3"),
                  EUR=strsplit(text,"\u20AC"))
 
