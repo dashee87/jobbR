@@ -75,37 +75,41 @@
 ##'
 
 jobSearch <- function(publisher, query, country = "us", location="", radius=25,
-                       sort=c("relevance","date"), start=0, limit = 10, all = FALSE,
-                       latlong="", fromAge="", st="", jt="",  filter = "",
-                       userip="1.2.3.4", version = 2,
-                       userAgent="Mozilla/%2F4.0%28Firefox%29",
-                       callback= "", highlight = "", chnl= ""){
+                      sort=c("relevance","date"), start=0, limit = 10, all = FALSE,
+                      latlong="", fromAge="", st="", jt="",  filter = "",
+                      userip="1.2.3.4", version = 2,
+                      userAgent="Mozilla/%2F4.0%28Firefox%29",
+                      callback= "", highlight = "", chnl= ""){
   sort<-match.arg(sort)
   if(!all){
-  url <- paste0("http://api.indeed.com/ads/apisearch?publisher=",publisher,
-                "&q=",query,"&l=",location,"&latlong=",latlong,"&userip=",
-                userip,"&useragent=",userAgent,"&format=json&start=",start,
-                "&limit=",limit,"&co=",country,"&sort=",sort,"&chnl=",chnl,"&v=",version)
-
-  as.data.frame(jsonlite::fromJSON(httr::content(httr::GET(url),
-                                                 as = "text", encoding = "UTF-8")))
-
+    url <- paste0("http://api.indeed.com/ads/apisearch?publisher=",publisher,
+                  "&q=",query,"&l=",location,"&latlong=",latlong,"&userip=",
+                  userip,"&useragent=",userAgent,"&format=json&start=",start,
+                  "&radius=",radius,"&st=",st,"&jt=",jt,"&fromage=",fromAge,
+                  "&limit=",limit,"&highlight=",highlight,"&filter=",filter,
+                  "&callback=",callback,"&co=",country,"&sort=",sort,"&chnl=",chnl,"&v=",version)
+    
+    as.data.frame(jsonlite::fromJSON(httr::content(httr::GET(url),
+                                                   as = "text", encoding = "UTF-8")))
+    
   }else{
     url <- paste0("http://api.indeed.com/ads/apisearch?publisher=",publisher,
                   "&q=",query,"&l=",location,"&latlong=",latlong,"&userip=",
                   userip,"&useragent=",userAgent,"&format=json&start=",0,
-                  "&limit=",25,"&co=",country,"&sort=",sort,"&chnl=",chnl,"&v=",version)
-
+                  "&radius=",radius,"&st=",st,"&jt=",jt,"&fromage=",fromAge,
+                  "&limit=",25,"&highlight=",highlight,"&filter=",filter,
+                  "&callback=",callback,"&co=",country,"&sort=",sort,"&chnl=",chnl,"&v=",version)
+    
     first_jobs <- jsonlite::fromJSON(httr::content(httr::GET(url),
-                                     as = "text", encoding = "UTF-8"))
-
+                                                   as = "text", encoding = "UTF-8"))
+    
     jobs_lists <- lapply(seq(0,max(first_jobs$totalResults),25), function(x){
       url <- gsub("start=0",paste0("start=",x),url)
       as.data.frame(jsonlite::fromJSON(httr::content(httr::GET(url),
-                                       as = "text", encoding = "UTF-8")))
+                                                     as = "text", encoding = "UTF-8")))
     })
-
+    
     jsonlite::rbind.pages(jobs_lists)
   }
-
+  
 }
