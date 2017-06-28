@@ -8,15 +8,7 @@ Getting Started
 
 ### Install
 
-Install from GitLab
-
-``` r
-# install.packages("devtools")
-devtools::install_git("https://gitlab.com/dashee87/jobbR.git")
-library("jobbR")
-```
-
-You can install from GitHub (identical mirror of GitLab)
+Install from GitHub
 
 ``` r
 # install.packages("devtools")
