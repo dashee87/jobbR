@@ -109,7 +109,7 @@ jobSearch <- function(publisher, query, country = "us", location="", radius=25,
                                                      as = "text", encoding = "UTF-8")))
     })
     
-    jsonlite::rbind.pages(jobs_lists)
+    jsonlite::rbind_pages(jobs_lists)
   }
   
 }
